@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>RateLimitTest</title>
+</head>
+
+<body>
+	<h1>Select User to Run RateLimit Test:</h1>
+
+	<a th:href="@{/test/anonymous}">Anonymous</a>
+	<br />
+	<a th:href="@{/test/regular}">Regular</a>
+	<br />
+	<a th:href="@{/test/vip}">VIP</a>
+	<br />
+	<br />
+	<h1>Or</h1>
+	<a th:href="@{/config}">Config User Specific</a>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>RateLimitConfig</title>
+<style>
+.row {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.col {
+	float: left;
+	padding:20px;
+	width: 200px;
+}
+</style>
+</head>
+<body>
+	<h1>Config User's Request Limit, -1(under 0) means unlimited</h1>
+	<div class='row'>
+		<div class='col'>
+			<span>User</span>
+		</div>
+		<div class='col'>
+			<span>Request Limit</span>
+		</div>
+		<div class='col'>
+			<span>Time Limit (Seconds)</span>
+		</div>
+
+	</div>
+
+	<div class='row' th:each="user : ${users}">
+		<form method="POST" th:object="${user}">
+			<div class='col'>
+				<span th:text="${user.id}">user</span>
+				 <input name="id" type="hidden"
+					th:value="*{id}" />
+			</div>
+			<div class='col'>
+				<input name="request" type="text" th:value="*{request}" />
+			</div>
+			<div class='col'>
+				<input name="seconds" type="text" th:value="*{seconds}" />
+			</div>
+
+			<div class='col'>
+				<button>Submit</button>
+			</div>
+		</form>
+
+	</div>
+
+
+	<br />
+	<a th:href="@{/}">Back</a>
+</body>
+
+</html>

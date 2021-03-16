@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>RateLimitTest</title>
+<meta http-equiv="refresh" content="1">
+</head>
+
+<body>
+	<h1>Testing...</h1>
+	<h4>This page will auto-refresh every seconds to simulate user
+		requests.</h4>
+	<h4>You can also open multiple pages to see that the RateLimiter
+		is Thread Safe and User Independent.</h4>
+	<br />
+	<span
+		th:text="'Current User License: '+${license}+', Specific: '+${request}+' per '+${seconds}+' seconds.'">current</span>
+	<br />
+	<span th:text="'Target TPS: '+${targetTPS}">Target TPS</span>
+	<br />
+	<span th:text="'Alive Request: '+${alive}">Real</span>
+	<br />
+	<span th:text="'Realtime TPS: '+${realTPS}">RealTPS</span>
+	<br />
+	<span th:text="'Overall TPS: '+${overallTPS}">OverallTPS</span>
+	<br />
+	<span
+		th:text="${exceeded}?'Limit Exceeded, Please wait...':'Limit Not Exceeded'">Exceeded</span>
+	<br />
+	<br />
+
+	<form method="POST" th:action="@{/test/restart}" th:object="${user}">
+		<div class='col'>
+			<input name="id" type="hidden" th:value="${userId}" />
+		</div>
+
+		<div class='col'>
+			<button>Restart Current User</button>
+		</div>
+	</form>
+	<a th:href="@{/}">Back</a>
+</body>
+
+</html>
